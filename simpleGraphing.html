@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	
+	
+	
+</head>
+<body>
+
+
+<h1>
+	simple graphing app
+</h1>
+
+<form>
+
+	<label for 'numVar'>Number of Variables</label>
+	<input id='numVar'>
+	<textarea id='dataInput'>
+	</textarea>
+
+	<button id='tryMe'>Try Me Button</button>
+
+	</form>
+
+
+<script>
+
+const tryMe = document.getElementById("tryMe");
+const data = document.getElementById('dataInput');
+
+/////////FUNCTIONS
+
+const intakeData = function(){
+
+	let raw = data.value;
+	return raw;
+	
+};
+
+const charCodeArrMaker = function(str,min, max){
+
+	let charCodeArr = [];
+	for (let i=0; i<str.length; i++){
+		if(str.charCodeAt(i) >= min && str.charCodeAt(i)<=max){
+			charCodeArr.push(str.charCodeAt(i));
+		}else{
+			charCodeArr.push(" ");
+		}
+	}
+	console.log(charCodeArr);
+	return charCodeArr;
+};
+
+const dataArrMaker = function(charCodeArr){
+	let arr = [];
+	for(let i = 0; i<charCodeArr.length; i++){
+		if(charCodeArr[i] >=48 && charCodeArr[i] <=57){
+			if(charCodeArr[i+1] >=48 && charCodeArr[i+1]<=57){
+				arr.push(String.fromCharCode(charCodeArr[i]) + String.fromCharCode(charCodeArr[i+1]))
+				i++;
+			}else{
+				arr.push(String.fromCharCode(charCodeArr[i]));
+			}
+
+
+		}
+
+	}
+	console.log(arr);
+};
+
+
+
+
+
+const main = function(){
+
+	dataArrMaker(charCodeArrMaker(intakeData(), 48, 57));
+
+};
+
+
+
+tryMe.addEventListener('click', function(event){event.preventDefault()}, false);
+
+
+tryMe.addEventListener('click', main, false);
+
+
+</script>
+
+</body>
+</html>
